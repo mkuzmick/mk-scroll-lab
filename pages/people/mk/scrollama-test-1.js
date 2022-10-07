@@ -13,7 +13,7 @@ const ScrollamaDemo = () => {
   return (
     <div style={{ margin: '50vh 0', border: '2px dashed skyblue' }}>
       <div style={{ position: 'sticky', top: 0, border: '1px solid orchid' }}>
-        I'm sticky. The current triggered step index is: {currentStepIndex}
+        Im sticky. The current triggered step index is: {currentStepIndex}
       </div>
       <Scrollama offset={0.5} onStepEnter={onStepEnter} debug>
         {[1, 2, 3, 4].map((_, stepIndex) => (
@@ -25,7 +25,7 @@ const ScrollamaDemo = () => {
                 opacity: currentStepIndex === stepIndex ? 1 : 0.2,
               }}
             >
-              I'm a Scrollama Step of index {stepIndex}
+              Im a Scrollama Step of index {stepIndex}
             </div>
           </Step>
         ))}
