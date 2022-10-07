@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Scrollama: Sticky Side Example</title>
+    <meta name="description" content="Scrollama: Sticky Side Example" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      #scrolly {
+        position: relative+20;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-color: #ffffff;
+        padding: 1rem;
+      }
+
+      #scrolly > * {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+      }
+
+      article {
+        position: relative;
+        padding: 0 1rem;
+        max-width: 20rem;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        width: 100%;
+        margin: 0;
+        background-color: #ffffff;
+        z-index: 0;
+        top: 5.5vh;
+        height: 75vh;
+        /* Center everything inside */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		white-space: pre-wrap;
+      }
+
+      .sticky-thing p {
+        padding: 1rem;
+        font-size: 2;
+        font-weight: 1;
+        color: black;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        background-color: #ffffff;
+        color: #ffffff;
+      }
+
+      .step:last-child {
+        margin-bottom: 0;
+      }
+
+      .step.is-active {
+        background-color: #ffffff;
+        color: #3b3b3b;
+      }
+
+      .step p {
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.5rem;
+      }
+	
+    </style>
+  </head>
+
+  <body>
+    <main>
+      
+      <section id="intro">
+        <h1 class="intro__hed">Scrollytelling test</h1>
+
+      </section>
+
+      <section id="scrolly">
+        <article>
+          <div class="step" data-step="HTML">
+            <p></p>
+          </div>
+          <div class="step" data-step="mountain">
+            <p> I have a question about this mountain</p>
+          </div>
+          <div class="step" data-step="towers">
+            <p>Are the red towers an allusion to the Kremlin? Why else would she specify the color</p>
+          </div>
+		  <div class="step" data-step="grieve">
+            <p>The word in Russian is much more active, I think. It has connotations of crying or weeping over someone</p>
+          </div>
+          <div class="step" data-step="glance">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </article>
+
+        <div class="sticky-thing">
+          <p>0</p>
+        </div>
+      </section>
+
+      <section id="outro"></section>
+    </main>
+
+    <!-- <div class='debug'></div> -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <script>
+      // using d3 for convenience
+      var main = document.querySelector("main");
+      var scrolly = main.querySelector("#scrolly");
+      var sticky = scrolly.querySelector(".sticky-thing");
+      var article = scrolly.querySelector("article");
+      var steps = article.querySelectorAll(".step");
+	  let poem = ' \n \
+				And the just man trailed God\'s shining agent, \n \
+	  			over a black mountain, in his giant track, \n \
+				while a restless voice kept harrying his woman: \n \
+				"It\'s not too late, you can still look back \n \
+				at the red towers of your native Sodom, \n \
+				the square where once you sang, the spinning-shed, \n \
+				at the empty windows set in the tall house \n \
+				where sons and daughters blessed your marriage-bed. \n \
+				A single glance: a sudden dart of pain \n \
+				stitching her eyes before she made a sound . . \n \
+				Her body flaked into transparent salt, \n \
+				and her swift legs rooted to the ground. \n \
+				Who will grieve for this woman? Does she not seem \n \
+				too insignificant for our concern? \n \
+				Yet in my heart I never will deny her, \n \
+				who suffered death because she chose to turn.'
+
+	  // initialize the scrollama
+      var scroller = scrollama();
+	  
+
+      // scrollama event handlers
+      function handleStepEnter(response) {
+        // response = { element, direction, index }
+        var el = response.element;
+		
+        // remove is-active from all steps
+        // then add is-active to this step
+        steps.forEach(step => step.classList.remove('is-active'));
+        el.classList.add('is-active');
+
+		function makeBold(input, wordsToBold) {
+    return input.replace(new RegExp('(\\b)(' + wordsToBold + ')(\\b)','ig'), '$1<b><font color=\'red\'>$2</font></b>$3');
+}
+
+        // update graphic based on step
+        //sticky.querySelector("p").innerText = poem[el.dataset.step-1]+  "/ " + poem[el.dataset.step];
+		//sticky.querySelector("p").innerText = poem.indexOf(text(el.dataset.step));
+	
+		sticky.querySelector("p").innerHTML= makeBold(poem,el.dataset.step);
+		//sticky.querySelector("p").innerText =(poem.split(el.dataset.step)[0]+  poem.split(el.dataset.step)[1]);
+      }
+
+      function init() {
+        scroller
+          .setup({
+            step: "#scrolly article .step",
+            offset: 0.33,
+            debug: false
+          })
+          .onStepEnter(handleStepEnter);
+
+        // setup resize event
+        window.addEventListener("resize", scroller.resize);
+      }
+
+      // kick things off
+      init();
+    </script>
+  </body>
+</html>
