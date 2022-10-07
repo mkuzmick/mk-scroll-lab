@@ -167,7 +167,7 @@ class Demo extends PureComponent {
           <b>React Scrollama</b> is a lightweight and simple interface for
           scrollytelling in React that uses IntersectionObserver in favor of
           scroll events. The library has been used by the{' '}
-          <a href="https://datatopics.worldbank.org/sdgatlas/">World Bank's</a>{' '}
+          <a href="https://datatopics.worldbank.org/sdgatlas/">World Banks</a>{' '}
           Atlas of Sustainable Development Goals and Politico.
         </p>
 
