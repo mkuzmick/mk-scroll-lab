@@ -75,7 +75,6 @@ const PoemMachine = ({poem, title, author, insights}) => {
                 <div className={styles.spacer}></div>
             </div>
         </div>
-        
     )
 }
 

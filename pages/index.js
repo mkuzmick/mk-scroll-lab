@@ -7,6 +7,10 @@ const theLinks = [
   {
     slug: "/people/anna/hello-all-the-poems",
     text: `anna's hello site rebuilt in react`
+  },
+  {
+    slug: "/plain-html/anna/hello.html",
+    text: `anna's original page preserved`
   }
 ]
 
