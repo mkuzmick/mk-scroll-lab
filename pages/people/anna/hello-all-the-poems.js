@@ -10,9 +10,9 @@ const Spacer = () => {
 export default function Page() {
   return (
     <>
-      { poemData.map(thisPoem => {
+      { poemData.map((thisPoem, i) => {
           return (
-            <div>
+            <div key={i}>
               <PoemMachine 
                 poem={thisPoem.text} 
                 insights={thisPoem.insights}
