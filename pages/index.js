@@ -21,7 +21,7 @@ export default function Home() {
       <footer className={styles.footer}>
        <ul>
         <li>
-          <Link href="/people/mk/scroll-story-1"><a>mk-hello-rebuild</a></Link>
+          <Link href="/people/anna/hello-all-the-poems"><a>anna's hello site rebuilt in react</a></Link>
         </li>
        </ul>
       </footer>

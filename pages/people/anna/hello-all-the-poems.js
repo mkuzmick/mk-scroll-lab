@@ -13,7 +13,12 @@ export default function Page() {
       { poemData.map(thisPoem => {
           return (
             <div>
-              <PoemMachine poem={thisPoem.text} insights={thisPoem.insights}/>
+              <PoemMachine 
+                poem={thisPoem.text} 
+                insights={thisPoem.insights}
+                author={thisPoem.author}
+                title={thisPoem.title}
+              />
               <Spacer />
             </div>
           )

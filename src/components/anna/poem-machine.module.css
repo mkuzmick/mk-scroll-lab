@@ -30,7 +30,7 @@
     top: 20vh;
     height: 75vh;
     /* Center everything inside */
-    display: flex;
+    /* display: flex; */
     align-items: left;
     justify-content: center;
     white-space: pre-wrap;
@@ -39,8 +39,7 @@
 
 .stickyThing p {
     padding: 1rem;
-    font-size: 2;
-    font-weight: 1;
+    font-size: 1rem;
     color: black;
   }
 
@@ -57,6 +56,11 @@
 .step.is-active {
     background-color: #ffffff;
     color: #3b3b3b;
+}
+
+.poemTitle {
+    padding-left: 1rem;
+    margin-bottom: 0;
 }
 
 .note {

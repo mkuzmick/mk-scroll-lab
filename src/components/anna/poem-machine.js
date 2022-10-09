@@ -2,8 +2,7 @@ import {useRef, useEffect, useState} from 'react';
 import styles from './poem-machine.module.css';
 import { Scrollama, Step } from 'react-scrollama';
 
-
-const PoemMachine = ({poem, insights}) => {
+const PoemMachine = ({poem, title, author, insights}) => {
     const [ currentStepIndex, setCurrentStepIndex ] = useState(null)
     const onStepEnter = ( {data} ) => {
         console.log(data)
@@ -39,7 +38,9 @@ const PoemMachine = ({poem, insights}) => {
                 </Scrollama>
                 </div>
                 <div className={styles.stickyThing}>
+                    <h3 className={styles.poemTitle}>{title}</h3>
                     <p>{poem}</p>
+                    <p><i>- {author}</i></p>
                 </div>
                 <div className={styles.spacer}></div>
             </div>
