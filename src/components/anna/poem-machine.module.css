@@ -1,0 +1,66 @@
+.container {
+    margin: auto;
+    width: 90%
+}
+
+.scrollStory1 {
+    position: relative;
+    display: flex;
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.spacer {
+    flex: 1
+}
+
+.article {
+    position: relative;
+    padding: 0 1rem;
+    flex: 2
+}
+
+.stickyThing {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    margin: 0;
+    background-color: #ffffff;
+    z-index: 0;
+    top: 20vh;
+    height: 75vh;
+    /* Center everything inside */
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    white-space: pre-wrap;
+    flex: 4
+}
+
+.stickyThing p {
+    padding: 1rem;
+    font-size: 2;
+    font-weight: 1;
+    color: black;
+  }
+
+.step {
+    margin: 10rem auto 10rem auto;
+    background-color: #ffffff;
+    color: rgba(200,200,200,.7);
+}
+
+.step:last-child {
+    margin-bottom: 0;
+}
+
+.step.is-active {
+    background-color: #ffffff;
+    color: #3b3b3b;
+}
+
+.note {
+    text-align: right;
+    padding: 1rem;
+    font-size: .9rem;
+}
