@@ -16,7 +16,7 @@ const ScrollamaDemo = () => {
         Im sticky. The current triggered step index is: {currentStepIndex}
       </div>
       <Scrollama offset={0.5} onStepEnter={onStepEnter} debug>
-        {[1, 2, 3, 4].map((_, stepIndex) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, stepIndex) => (
           <Step data={stepIndex} key={stepIndex}>
             <div
               style={{
