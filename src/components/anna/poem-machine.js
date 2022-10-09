@@ -1,4 +1,4 @@
-import {useRef, useEffect, useState} from 'react';
+import {useRef, useEffect, useState, Fragment} from 'react';
 import styles from './poem-machine.module.css';
 import { Scrollama, Step } from 'react-scrollama';
 
@@ -15,9 +15,9 @@ const PoemWithHighlighting = ({poem, keyterm}) => {
             parts.map((part, i) => {
                 if ((i+1) < parts.length) {
                     return (
-                        <>
+                        <Fragment key={i}>
                             <span>{part}</span><span className={styles.highlight}>{keyterm}</span>
-                        </>
+                        </Fragment>
                     )
                 } else {
                     return (
@@ -27,29 +27,7 @@ const PoemWithHighlighting = ({poem, keyterm}) => {
                 
             })
         )
-    }
-    const formatLabel = (label, value) => {
-        if (!value) {
-          return label;
-        }
-        return (<span>
-          { label.split(value)
-            .reduce((prev, current, i) => {
-              if (!i) {
-                return [current];
-              }
-              return prev.concat(<b key={value + current}>{ value }</b>, current);
-            }, [])
-          }
-        </span>);
-      };
-      
-    return (
-        <>
-            <p><span>{poem}</span><span className={styles.highlight}></span><span></span></p>
-        </>
-        
-    )
+    } 
 }
 
 const PoemMachine = ({poem, title, author, insights}) => {
