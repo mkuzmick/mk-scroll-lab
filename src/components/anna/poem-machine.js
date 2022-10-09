@@ -2,13 +2,63 @@ import {useRef, useEffect, useState} from 'react';
 import styles from './poem-machine.module.css';
 import { Scrollama, Step } from 'react-scrollama';
 
+const PoemWithHighlighting = ({poem, keyterm}) => {
+    if (!keyterm) {
+        return (
+            <div>
+                <p>{poem}</p>
+            </div>
+        )
+    } else {
+        let parts = poem.split(keyterm)
+        return (
+            parts.map((part, i) => {
+                if ((i+1) < parts.length) {
+                    return (
+                        <>
+                            <span>{part}</span><span className={styles.highlight}>{keyterm}</span>
+                        </>
+                    )
+                } else {
+                    return (
+                        <span>{part}</span>
+                    )
+                }
+                
+            })
+        )
+    }
+    const formatLabel = (label, value) => {
+        if (!value) {
+          return label;
+        }
+        return (<span>
+          { label.split(value)
+            .reduce((prev, current, i) => {
+              if (!i) {
+                return [current];
+              }
+              return prev.concat(<b key={value + current}>{ value }</b>, current);
+            }, [])
+          }
+        </span>);
+      };
+      
+    return (
+        <>
+            <p><span>{poem}</span><span className={styles.highlight}></span><span></span></p>
+        </>
+        
+    )
+}
+
 const PoemMachine = ({poem, title, author, insights}) => {
     const [ currentStepIndex, setCurrentStepIndex ] = useState(null)
-    const [ keyword, setKeyword ] = useState(null)
+    const [ keyterm, setKeyterm ] = useState(null)
     const onStepEnter = ( {data} ) => {
         console.log(data)
         setCurrentStepIndex(data.index)
-        setKeyword(data.term)
+        setKeyterm(data.term)
     }
     return (
         <div className={styles.container}>
@@ -26,8 +76,8 @@ const PoemMachine = ({poem, title, author, insights}) => {
                             let stepData = { term: insight.word,  index: i}
                             return (
                                 <Step data={stepData} key={i} >
-                                    <div className={ keyword == insight.word ? styles.currentStep : styles.step }>
-                                        <h3>{insight.word}</h3>
+                                    <div className={ keyterm == insight.word ? styles.currentStep : styles.step }>
+                                        <h3 className={styles.keyterm}>{insight.word}</h3>
                                         <p className={styles.note}>{insight.note}</p>
                                     </div>    
                                 </Step>
@@ -41,7 +91,7 @@ const PoemMachine = ({poem, title, author, insights}) => {
                 </div>
                 <div className={styles.stickyThing}>
                     <h3 className={styles.poemTitle}>{title}</h3>
-                    <p>{poem}</p>
+                    <PoemWithHighlighting poem={poem} keyterm={keyterm}/>
                     <p><i>- {author}</i></p>
                 </div>
                 <div className={styles.spacer}></div>

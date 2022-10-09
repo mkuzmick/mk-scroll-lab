@@ -29,18 +29,18 @@
     z-index: 0;
     top: 20vh;
     height: 75vh;
-    /* Center everything inside */
-    /* display: flex; */
     align-items: left;
     justify-content: center;
     white-space: pre-wrap;
-    flex: 4
+    flex: 4;
+    
 }
 
 .stickyThing p {
-    padding: 1rem;
+    /* padding: 1rem; */
     font-size: 1rem;
     color: black;
+    transition: color 1s;
   }
 
 .step {
@@ -67,12 +67,24 @@
 }
 
 .poemTitle {
-    padding-left: 1rem;
-    margin-bottom: 0;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.keyterm {
+    text-align: right;
+    padding: 1rem;
+    padding-bottom: 0;
 }
 
 .note {
     text-align: right;
     padding: 1rem;
     font-size: .9rem;
+    padding-top: 0;
+}
+
+.highlight {
+    color: rgba(150,0,0,.8);
+    transition: color 1s;
 }
