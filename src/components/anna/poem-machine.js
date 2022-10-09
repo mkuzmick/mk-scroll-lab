@@ -21,7 +21,7 @@ const PoemWithHighlighting = ({poem, keyterm}) => {
                     )
                 } else {
                     return (
-                        <span>{part}</span>
+                        <span key = {i}>{part}</span>
                     )
                 }
                 
