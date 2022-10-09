@@ -1,5 +1,5 @@
 import poemData from '../../../data/poems/anna-poems'
-import PoemMachine from '../anna/poem-machine'
+import PoemMachine from '../../../src/components/anna/poem-machine'
 
 const Spacer = () => {
   return (
