@@ -45,8 +45,16 @@
 
 .step {
     margin: 10rem auto 10rem auto;
-    background-color: #ffffff;
-    color: rgba(200,200,200,.7);
+    padding-bottom: 200px;
+    color: rgba(100,100,230,.1);
+    transition: color 2s;
+}
+
+.currentStep {
+    margin: 10rem auto 10rem auto;
+    color: rgba(150,0,0,.8);
+    transition: color 1s;
+    padding-bottom: 200px;
 }
 
 .step:last-child {

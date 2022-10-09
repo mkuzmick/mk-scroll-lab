@@ -4,16 +4,18 @@ import { Scrollama, Step } from 'react-scrollama';
 
 const PoemMachine = ({poem, title, author, insights}) => {
     const [ currentStepIndex, setCurrentStepIndex ] = useState(null)
+    const [ keyword, setKeyword ] = useState(null)
     const onStepEnter = ( {data} ) => {
         console.log(data)
         setCurrentStepIndex(data.index)
+        setKeyword(data.term)
     }
     return (
         <div className={styles.container}>
             <div className={styles.scrollStory1} >
                 <div className={styles.spacer}></div>
                 <div className={styles.article}>
-                <Scrollama onStepEnter={onStepEnter} offset={0.6}>
+                <Scrollama onStepEnter={onStepEnter} offset={0.55}>
                     <Step data={{ term: "intro",  index: -1}} key={-1} >
                         <div className={styles.step} style={{height: "75vh"}}>
                         </div>    
@@ -24,7 +26,7 @@ const PoemMachine = ({poem, title, author, insights}) => {
                             let stepData = { term: insight.word,  index: i}
                             return (
                                 <Step data={stepData} key={i} >
-                                    <div className={styles.step}>
+                                    <div className={ keyword == insight.word ? styles.currentStep : styles.step }>
                                         <h3>{insight.word}</h3>
                                         <p className={styles.note}>{insight.note}</p>
                                     </div>    
